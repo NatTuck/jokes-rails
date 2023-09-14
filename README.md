@@ -1,7 +1,22 @@
-# README
+
+# More README
+
+Useful commands
+
+```bash
+yarn build
+yarn build:css
+rails server
+```
+
+
+# Default README
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
+
+Ru
+
 
 Things you may want to cover:
 
