@@ -1,0 +1,15 @@
+[Unit]
+Description=Jokes Rails
+
+[Service]
+Type=simple
+User=jokes-rails
+Group=jokes-rails
+Restart=on-failure
+Environment=LANG=en_us.UTF-8
+
+WorkingDirectory=/home/jokes-rails/jokes-rails
+ExecStart=bash /home/jokes-rails/jokes-rails/bin/start.sh
+
+[Install]
+WantedBy=multi-user.target
