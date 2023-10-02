@@ -19,4 +19,4 @@ jobs:
      - run: mkdir -p ~/.ssh
      - run: echo $SSH_PRIVATE_KEY > ~/.ssh/id_ed25519
      - run: echo $SSH_PUBLIC_KEY > ~/.ssh/id_ed25519.pub
-     - run: ls -l ~/.ssh
+     - run: ssh jokes-rails@goblin.homework.quest bash -c 'whoami; hostname; printenv'
