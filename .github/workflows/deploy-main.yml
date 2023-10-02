@@ -1,3 +1,5 @@
+name: Deploy to Goblin
+
 on:
   push:
     branches: [ "main" ]
@@ -19,4 +21,6 @@ jobs:
      - run: mkdir -p ~/.ssh
      - run: echo $SSH_PRIVATE_KEY > ~/.ssh/id_ed25519
      - run: echo $SSH_PUBLIC_KEY > ~/.ssh/id_ed25519.pub
+     - run: chmod 0700 ~/.ssh
+     - run: chmod 0600 ~/.ssh/*
      - run: ssh -o StrictHostKeyChecking=no jokes-rails@goblin.homework.quest bash -c 'whoami; hostname; printenv'
