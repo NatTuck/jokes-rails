@@ -1,10 +1,19 @@
 server {
-        listen 80;
-        listen [::]:80;
+	listen 80;
+	listen [::]:80;
 
-        server_name jokes-rails.homework.quest;
+	server_name jokes-rails.homework.quest;
 
-        location / {
-                proxy_pass http://localhost:3077/;
-        }
+	root        /home/jokes-rails/jokes-rails/public;
+
+	location /assets/ {
+		gzip_static on;
+	}
+
+	# If this gives permission errors, check +x in parent dirs
+	try_files $uri @app;
+
+	location @app {
+		proxy_pass http://localhost:3077;
+	}
 }
