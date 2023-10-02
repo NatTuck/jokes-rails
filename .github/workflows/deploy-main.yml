@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 env:
+  GOAT: boat
   SSH_PUBLIC_KEY: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMoWztzYBEqj9NKuBL+ibe1ncBy2GImcEMMAssrOzSlQ jokes-rails@goblin.homework.quest"
   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
@@ -18,9 +19,7 @@ jobs:
       contents: none
     runs-on: ubuntu-latest
     steps:
-     - run: mkdir -p ~/.ssh
-     - run: echo $SSH_PRIVATE_KEY > ~/.ssh/id_ed25519
-     - run: echo $SSH_PUBLIC_KEY > ~/.ssh/id_ed25519.pub
-     - run: chmod 0700 ~/.ssh
-     - run: chmod 0600 ~/.ssh/*
-     - run: ssh -o StrictHostKeyChecking=no jokes-rails@goblin.homework.quest bash -c 'whoami; hostname; printenv'
+      - uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - run: ssh -o StrictHostKeyChecking=no jokes-rails@goblin.homework.quest bash -c 'whoami; hostname; printenv'
